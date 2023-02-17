@@ -1,4 +1,4 @@
-import Dropzone from "../components/Dropzone";
+import DropAndVisualize from "../components/DropAndVisualize";
 
 export default function Home() {
   return (
@@ -10,11 +10,8 @@ export default function Home() {
         Inserisci i tuoi disegni e trasformali in vibranti creazioni uniche.
       </h2>
       <div>
-        <Dropzone />
+        <DropAndVisualize />
       </div>
-      <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg">
-        Invia
-      </button>
     </div>
   );
 }

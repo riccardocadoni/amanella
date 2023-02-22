@@ -1,15 +1,20 @@
 "use client";
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import Image from "next/image";
+import LoadingDots from "./LoadingDots";
+import downloadPhoto from "../utils/downloadPhoto";
+import appendNewToName from "../utils/appendNewToName";
 
-const IMAGE_WIDTH = 400;
-const IMAGE_HEIGHT = 600;
+const IMAGE_WIDTH = 300;
+const IMAGE_HEIGHT = 500;
 
 export default function Dropzone() {
   const [data, setData] = useState<{
     image: string | null;
+    prompt: string | null;
   }>({
     image: null,
+    prompt: null,
   });
   const [fileSizeTooBig, setFileSizeTooBig] = useState(false);
   const [dragActive, setDragActive] = useState(false);
@@ -40,6 +45,8 @@ export default function Dropzone() {
   const handleGeneration = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    if (!data.image) return;
+    if (!data.prompt) return;
     const res = await fetch("/api/draw", {
       method: "POST",
       body: JSON.stringify(data),
@@ -56,13 +63,21 @@ export default function Dropzone() {
 
   console.log("generatedImageUrl", generatedImageUrl);
 
-  if (generatedImageUrl) {
-    const originalPhoto = data?.image || "/hand-logo.png";
+  if (isLoading) {
     return (
-      <div className="flex flex-col items-center gap-5">
+      <div className="flex justify-center w-full h-64">
+        <LoadingDots color="black" style="large" />
+      </div>
+    );
+  }
+
+  if (generatedImageUrl) {
+    const originalPhoto = data?.image;
+    return (
+      <div className="flex flex-col items-center gap-2">
         <div className="flex sm:space-x-2 sm:flex-row flex-col">
           <Image
-            src={originalPhoto}
+            src={originalPhoto!}
             alt="Drawing"
             width={IMAGE_WIDTH}
             height={IMAGE_HEIGHT}
@@ -76,14 +91,42 @@ export default function Dropzone() {
             className="rounded-md border"
           />
         </div>
-        <button
-          className={
-            "border-black bg-black text-white hover:bg-white hover:text-black flex w-1/2 h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
-          }
-          onClick={() => setGeneratedImageUrl(null)}
-        >
-          <p className="text-sm">Upload new image</p>
-        </button>
+        <div className="flex sm:flex-row flex-col w-full gap-2">
+          <button
+            className={
+              "border-black bg-black p-2 text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+            }
+            onClick={() => {
+              setGeneratedImageUrl(null);
+              setData({ image: null, prompt: null });
+            }}
+          >
+            <p className="text-sm">Riprova con un altra immagine</p>
+          </button>
+          <button
+            className={
+              "border-black bg-black p-2 text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+            }
+            onClick={() => {
+              setGeneratedImageUrl(null);
+            }}
+          >
+            <p className="text-sm">Prova ancora</p>
+          </button>
+          <button
+            onClick={() => {
+              downloadPhoto(
+                generatedImageUrl!,
+                appendNewToName("amanella-image")
+              );
+            }}
+            className={
+              "border-black bg-black text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+            }
+          >
+            <p className="text-sm">Scarica la foto</p>
+          </button>
+        </div>
       </div>
     );
   }
@@ -91,7 +134,7 @@ export default function Dropzone() {
   return (
     <>
       <form
-        className="flex flex-col gap-6 bg-gray-50 md:px-16"
+        className="flex flex-col gap-6 bg-gray-50 md:px-16 "
         onSubmit={(e) => handleGeneration(e)}
       >
         <div className="w-full">
@@ -184,19 +227,32 @@ export default function Dropzone() {
             />
           </div>
         </div>
+        <div className="flex flex-col text-left">
+          <label
+            //htmlFor="prompt"
+            className="mb-2 text-sm font-medium text-black"
+          >
+            Descrizione
+          </label>
+          <input
+            type="text"
+            id="prompt"
+            className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:outline-black w-full p-2.5 "
+            placeholder="Un cavallo che corre"
+            onChange={(e) =>
+              setData((prev) => ({ ...prev, prompt: e.target?.value }))
+            }
+          />
+        </div>
         <button
-          disabled={isLoading}
+          disabled={!data.image || !data.prompt}
           className={`${
-            isLoading
+            !data.image || !data.prompt
               ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
               : "border-black bg-black text-white hover:bg-white hover:text-black"
           } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
         >
-          {isLoading ? (
-            <p className="text-sm">Loading ...</p>
-          ) : (
-            <p className="text-sm">Upload</p>
-          )}
+          <p className="text-sm">Trasforma</p>
         </button>
       </form>
     </>

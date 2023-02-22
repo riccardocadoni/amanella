@@ -20,7 +20,7 @@ export default function RootLayout({
           <Link href="/" className="flex space-x-2">
             <Image
               alt="header text"
-              src="/hand-logo.png"
+              src="/hand-logo.svg"
               className="sm:w-14 sm:h-14 w-9 h-9"
               width={36}
               height={36}

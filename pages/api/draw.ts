@@ -2,10 +2,15 @@
 import type { NextApiResponse } from "next";
 import { NextRequest } from "next/server";
 
-type Data = {
+type ResData = {
   generatedImageURl?: string | null;
   message?: string;
 };
+const HED_ENDPOINT =
+  "cde353130c86f37d0af4060cd757ab3009cac68eb58df216768f907f0d0a0653";
+//requires image not input_image
+const SCRIBBLE_ENDPOINT =
+  "435061a1b5a4c1e26740464bf786efdfa9cb3a3ac488595a2de23e143fdb0117";
 
 export const config = {
   runtime: "edge",
@@ -13,12 +18,12 @@ export const config = {
 
 export default async function handler(
   req: NextRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<ResData>
 ) {
-  const { image } = await req.json();
-  /* 
-  const fixedimageurl =
-    "https://replicate.delivery/pbxt/VSnZBbelytT8J6BAzemrJaNdvlbK7O7OR5myS9daoTxoSlgQA/output_1.png";
+  const { image, prompt } = await req.json();
+
+  /*  const fixedimageurl =
+    "https://replicate.delivery/pbxt/dh1frIewk9ilKkNX4tuLZJPOoTdgsfpq8Wvy0dBWa3uVFXBhA/output_1.png";
   return new Response(
     JSON.stringify({
       generatedImageUrl: fixedimageurl,
@@ -27,7 +32,8 @@ export default async function handler(
   ); */
 
   if (req.method === "POST") {
-    const prompt = "oil painting, beautifully colored, masterpiece";
+    //const promptSample = "oil painting, beautifully colored, masterpiece";
+    const aPrompt = "best quality, extremely detailed";
     const negativePrompt =
       "longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality";
 
@@ -41,13 +47,12 @@ export default async function handler(
           Authorization: "Token " + process.env.REPLICATE_API_KEY,
         },
         body: JSON.stringify({
-          version:
-            "cde353130c86f37d0af4060cd757ab3009cac68eb58df216768f907f0d0a0653",
+          version: HED_ENDPOINT,
           input: {
             prompt: prompt,
             n_prompt: negativePrompt,
             input_image: image,
-            a_prompt: "best quality, extremely detailed",
+            a_prompt: aPrompt,
             num_samples: "1",
           },
         }),
@@ -73,7 +78,7 @@ export default async function handler(
 
       if (jsonFinalResponse.status === "succeeded") {
         generatedImage = jsonFinalResponse.output[1];
-        console.log("SUCCEDED generatedImage: ", generatedImage);
+        console.log("GeneratedImage URL: ", generatedImage);
         return new Response(
           JSON.stringify({
             generatedImageUrl: generatedImage,

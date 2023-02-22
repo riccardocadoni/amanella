@@ -61,11 +61,12 @@ export default function Dropzone() {
     }
   };
 
-  console.log("generatedImageUrl", generatedImageUrl);
-
   if (isLoading) {
     return (
       <div className="flex justify-center w-full h-64">
+        <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
+          Lavori in corso..
+        </p>
         <LoadingDots color="black" style="large" />
       </div>
     );

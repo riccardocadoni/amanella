@@ -1,4 +1,4 @@
-import ImagesCard from "./ImagesCard";
+import ImagesCard from "../ImagesCard";
 
 const testimonials = [
   [
@@ -30,10 +30,16 @@ export default function CaseHistory() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto md:text-center">
           <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
-            Loved by many worldwide.
+            Amato da migliaia di artisti
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            See what our 200,000+ users are creating.
+            Il nostro sito ti permette di caricare i tuoi disegni fatti a mano e
+            di trasformarli in immagini digitali colorate e dettagliate. Basta
+            caricare una foto del tuo disegno e il modello di intelligenza
+            artificiale farà il resto!
+          </p>
+          <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
+            Ecco alcuni esempi di cosa può fare
           </p>
         </div>
         <ul

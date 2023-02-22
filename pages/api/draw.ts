@@ -22,8 +22,8 @@ export default async function handler(
 ) {
   const { image, prompt } = await req.json();
 
-  /*  const fixedimageurl =
-    "https://replicate.delivery/pbxt/dh1frIewk9ilKkNX4tuLZJPOoTdgsfpq8Wvy0dBWa3uVFXBhA/output_1.png";
+  /* const fixedimageurl =
+    "https://replicate.delivery/pbxt/Vb0duvB1QybeDa9E11O4zItJNgfd0u6g9Njq1zMfGYjf40DCB/output_1.png";
   return new Response(
     JSON.stringify({
       generatedImageUrl: fixedimageurl,

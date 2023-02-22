@@ -5,7 +5,7 @@ import Info from "../components/sections/Info";
 
 export default function Home() {
   return (
-    <div className="flex flex-col justify-center items-center text-center pb-10">
+    <div className="flex flex-col justify-center items-center text-center divide-y pb-10">
       <Head />
       <Dropzone />
       <CaseHistory />

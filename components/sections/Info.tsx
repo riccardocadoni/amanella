@@ -16,7 +16,7 @@ export default function Info() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             La privacy è importante, le immagini che carichi e quelle generate
-            vengono cancellate automaticamente dopo un ora.
+            vengono cancellate automaticamente dopo un'ora.
           </p>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Non salviamo le tue creazioni, ricordati quindi di scaricare le

@@ -87,9 +87,12 @@ export default async function handler(
         );
       } else if (jsonFinalResponse.status === "failed") {
         console.log("FAILED replicate: ", jsonStartResponse);
-        res.status(500).json({
-          message: "Replicate failed",
-        });
+        return new Response(
+          JSON.stringify({
+            message: "Replicate failed",
+          }),
+          { status: 500 }
+        );
         break;
       } else {
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -97,8 +100,11 @@ export default async function handler(
     }
   } else {
     // invia un errore se il metodo della richiesta non è POST
-    res
-      .status(405)
-      .json({ message: "Il metodo della richiesta non è consentito." });
+    return new Response(
+      JSON.stringify({
+        message: "Http method not allowed",
+      }),
+      { status: 405 }
+    );
   }
 }

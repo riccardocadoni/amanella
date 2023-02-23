@@ -1,12 +1,12 @@
 "use client";
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import LoadingDots from "./LoadingDots";
 import downloadPhoto from "../utils/downloadPhoto";
 import appendNewToName from "../utils/appendNewToName";
-import { Download, Wand2 } from "lucide-react";
+import { Download, Wand2, Trash2 } from "lucide-react";
 
-const IMAGE_WIDTH = 300;
+const IMAGE_WIDTH = 500;
 const IMAGE_HEIGHT = 500;
 
 export default function Dropzone() {
@@ -23,6 +23,7 @@ export default function Dropzone() {
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
     null
   );
+  const inputRef = useRef<any>(null);
 
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -224,9 +225,11 @@ export default function Dropzone() {
               <span className="sr-only">Photo upload</span>
             </div>
             {data.image && (
-              <img
+              <Image
                 src={data.image}
                 alt="Preview"
+                width={IMAGE_WIDTH}
+                height={IMAGE_HEIGHT}
                 className="h-full  rounded-md object-cover"
               />
             )}
@@ -234,6 +237,7 @@ export default function Dropzone() {
           <div className="mt-1 flex rounded-md shadow-sm">
             <input
               id="image-upload"
+              ref={inputRef}
               name="image"
               type="file"
               accept="image/*"
@@ -241,6 +245,16 @@ export default function Dropzone() {
               onChange={onChangePicture}
             />
           </div>
+          {data.image && (
+            <button
+              onClick={() => {
+                inputRef.current.value = "";
+                setData((prev) => ({ ...prev, image: null }));
+              }}
+            >
+              <Trash2 className="h-5 w-5" />
+            </button>
+          )}
         </div>
         <div className="flex flex-col text-left">
           <label

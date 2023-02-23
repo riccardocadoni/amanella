@@ -4,7 +4,7 @@ import Image from "next/image";
 import LoadingDots from "./LoadingDots";
 import downloadPhoto from "../utils/downloadPhoto";
 import appendNewToName from "../utils/appendNewToName";
-import { Download, Wand2 } from "lucide-react";
+import { Download, Wand2, Trash2 } from "lucide-react";
 
 const IMAGE_WIDTH = 300;
 const IMAGE_HEIGHT = 500;
@@ -241,6 +241,13 @@ export default function Dropzone() {
               onChange={onChangePicture}
             />
           </div>
+          {data.image && (
+            <button
+              onClick={() => setData((prev) => ({ ...prev, image: null }))}
+            >
+              <Trash2 className="h-5 w-5" />
+            </button>
+          )}
         </div>
         <div className="flex flex-col text-left">
           <label

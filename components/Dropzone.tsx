@@ -6,7 +6,7 @@ import downloadPhoto from "../utils/downloadPhoto";
 import appendNewToName from "../utils/appendNewToName";
 import { Download, Wand2, Trash2 } from "lucide-react";
 
-const IMAGE_WIDTH = 300;
+const IMAGE_WIDTH = 500;
 const IMAGE_HEIGHT = 500;
 
 export default function Dropzone() {

@@ -3,9 +3,9 @@ import ImagesCard from "../ImagesCard";
 const testimonials = [
   [
     {
-      originalImg: "/horse.jpg",
-      generatedImg: "/horse-ai.jpg",
-      prompt: "Un cavallo colorato",
+      originalImg: "/mountain.jpg",
+      generatedImg: "/mountain-ai.jpg",
+      prompt: "A mountain",
     },
     {
       originalImg: "/bonsai.jpg",
@@ -34,9 +34,9 @@ export default function CaseHistory() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Il nostro sito ti permette di caricare i tuoi disegni fatti a mano e
-            di trasformarli in immagini digitali colorate e dettagliate. Basta
-            caricare una foto del tuo disegno e il modello di intelligenza
-            artificiale farà il resto!
+            di trasformarli in immagini colorate e dettagliate. Basta caricare
+            una foto del tuo disegno e il modello di intelligenza artificiale
+            farà il resto!
           </p>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Ecco alcuni esempi di cosa può fare

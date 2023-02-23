@@ -23,14 +23,14 @@ export default async function handler(
   const { image, prompt } = await req.json();
 
   /* const fixedimageurl =
-    "https://replicate.delivery/pbxt/Vb0duvB1QybeDa9E11O4zItJNgfd0u6g9Njq1zMfGYjf40DCB/output_1.png";
+    "https://replicate.delivery/pbxt/fRfcw14rE8hfNJlfbKhYfj4RZGvujYxf84UGHyjHhJofqRpQIA/output_1.png";
   return new Response(
     JSON.stringify({
       generatedImageUrl: fixedimageurl,
     }),
     { status: 200 }
-  ); */
-
+  );
+ */
   if (req.method === "POST") {
     //const promptSample = "oil painting, beautifully colored, masterpiece";
     const aPrompt = "best quality, extremely detailed";

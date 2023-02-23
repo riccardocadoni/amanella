@@ -104,7 +104,7 @@ export default function Dropzone() {
           <div className="flex sm:flex-row flex-col w-full gap-2">
             <button
               className={
-                "border-black bg-black p-2 text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+                "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
               }
               onClick={(e) => {
                 e.preventDefault();
@@ -112,18 +112,22 @@ export default function Dropzone() {
                 setData({ image: null, prompt: null });
               }}
             >
-              <p className="text-sm">Riprova con un altra immagine</p>
+              <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
+                <p className="text-sm">Nuova immagine</p>
+              </span>
             </button>
             <button
               className={
-                "border-black bg-black p-2 text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+                "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
               }
               onClick={(e) => {
                 e.preventDefault();
                 setGeneratedImageUrl(null);
               }}
             >
-              <p className="text-sm">Prova ancora</p>
+              <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
+                <p className="text-sm">Prova ancora</p>
+              </span>
             </button>
             <button
               onClick={() => {
@@ -256,16 +260,25 @@ export default function Dropzone() {
             }
           />
         </div>
+
         <button
           disabled={!data.image || !data.prompt}
           className={`${
             !data.image || !data.prompt
               ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
-              : "border-black bg-black text-white hover:bg-white hover:text-black"
-          } flex h-10 w-full items-center justify-center rounded-md border text-sm transition-all focus:outline-none`}
+              : "p-0.5 rounded-md bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white"
+          } rounded-md`}
         >
-          <p className="text-sm mr-3">Trasforma</p>
-          <Wand2 className="h-5 w-5 group-hover:text-black" />
+          <span
+            className={`${
+              !data.image || !data.prompt
+                ? "cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400"
+                : " bg-white hover:bg-inherit hover:text-white"
+            } flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded`}
+          >
+            <p className="pr-2 ">Colora</p>
+            <Wand2 className="h-5 w-5" />
+          </span>
         </button>
       </form>
     </section>

@@ -9,9 +9,9 @@ const LoadingDots = ({
 }) => {
   return (
     <span className={style == "small" ? styles.loading2 : styles.loading}>
-      <span style={{ backgroundColor: color }} />
-      <span style={{ backgroundColor: color }} />
-      <span style={{ backgroundColor: color }} />
+      <span className="bg-yellow-400" />
+      <span className="bg-orange-500" />
+      <span className="bg-red-600" />
     </span>
   );
 };

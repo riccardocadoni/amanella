@@ -2,6 +2,11 @@ import Link from "next/link";
 import Image from "next/image";
 import Footer from "./footer";
 import "./globals.css";
+import { Quicksand } from "@next/font/google";
+
+const quickSand = Quicksand({
+  subsets: ["latin"],
+});
 
 export default function RootLayout({
   children,
@@ -15,8 +20,8 @@ export default function RootLayout({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <header className="flex justify-between items-center w-full mt-5 border-b-2 pb-7 sm:px-4 px-2">
+      <body className={quickSand.className}>
+        <header className="flex justify-between items-center w-full mt-5 border-b-2 pb-7 sm:px-4 px-4">
           <Link href="/" className="flex space-x-2">
             <Image
               alt="header text"
@@ -25,7 +30,7 @@ export default function RootLayout({
               width={36}
               height={36}
             />
-            <h1 className="sm:text-5xl text-3xl font-bold ml-2 tracking-tight">
+            <h1 className="sm:text-5xl text-3xl ml-2 tracking-tight">
               Amanella
             </h1>
           </Link>

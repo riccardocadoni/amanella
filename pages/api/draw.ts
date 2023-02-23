@@ -29,8 +29,8 @@ export default async function handler(
       generatedImageUrl: fixedimageurl,
     }),
     { status: 200 }
-  );
- */
+  ); */
+
   if (req.method === "POST") {
     //const promptSample = "oil painting, beautifully colored, masterpiece";
     const aPrompt = "best quality, extremely detailed";

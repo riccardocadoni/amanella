@@ -8,14 +8,14 @@ const testimonials = [
       prompt: "A mountain",
     },
     {
-      originalImg: "/bonsai.jpg",
-      generatedImg: "/bonsai-ai.jpg",
-      prompt: "Un bellissimo bonsai",
+      originalImg: "/dog.jpg",
+      generatedImg: "/dog-ai.jpg",
+      prompt: "A dog",
     },
     {
       originalImg: "/flower.jpg",
       generatedImg: "/flower-ai.jpg",
-      prompt: "Un fiore",
+      prompt: "A flower",
     },
   ],
 ];
@@ -32,14 +32,14 @@ export default function CaseHistory() {
           <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
             Amato da migliaia di artisti
           </h1>
-          <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
+          {/*  <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Il nostro sito ti permette di caricare i tuoi disegni fatti a mano e
             di trasformarli in immagini colorate e dettagliate. Basta caricare
             una foto del tuo disegno e il modello di intelligenza artificiale
             farà il resto!
-          </p>
+          </p> */}
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            Ecco alcuni esempi di cosa può fare
+            Ecco alcuni esempi, tutti creati con Amanella
           </p>
         </div>
         <ul

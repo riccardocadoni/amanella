@@ -73,7 +73,7 @@ export default function Dropzone() {
           <LoadingDots color="black" style="large" />
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Solitamente pronto in pochi secondi, in alcuni casi potrebbe
-            impiegarci qualche minuto :(
+            impiegarci qualche minuto 🚀
           </p>
         </div>
       </section>

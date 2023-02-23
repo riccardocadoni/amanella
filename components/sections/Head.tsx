@@ -12,9 +12,7 @@ export default function Head() {
           <p className="mx-auto mt-6 max-w-xl text-2xl text-slate-700 leading-7">
             Ti piace disegnare? Carica i tuoi capolavori e scopri come prendono
             vita con la nostra{" "}
-            <span className="font-extrabold text-transparent bg-clip-text text-sky-500">
-              AI
-            </span>
+            <span className="font-extrabold bg-clip-text text-sky-500">AI</span>
           </p>
         </div>
       </div>

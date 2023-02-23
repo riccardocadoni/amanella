@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import LoadingDots from "./LoadingDots";
 import downloadPhoto from "../utils/downloadPhoto";
@@ -23,6 +23,7 @@ export default function Dropzone() {
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
     null
   );
+  const inputRef = useRef<any>(null);
 
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -224,9 +225,11 @@ export default function Dropzone() {
               <span className="sr-only">Photo upload</span>
             </div>
             {data.image && (
-              <img
+              <Image
                 src={data.image}
                 alt="Preview"
+                width={IMAGE_WIDTH}
+                height={IMAGE_HEIGHT}
                 className="h-full  rounded-md object-cover"
               />
             )}
@@ -234,6 +237,7 @@ export default function Dropzone() {
           <div className="mt-1 flex rounded-md shadow-sm">
             <input
               id="image-upload"
+              ref={inputRef}
               name="image"
               type="file"
               accept="image/*"
@@ -243,7 +247,10 @@ export default function Dropzone() {
           </div>
           {data.image && (
             <button
-              onClick={() => setData((prev) => ({ ...prev, image: null }))}
+              onClick={() => {
+                inputRef.current.value = "";
+                setData((prev) => ({ ...prev, image: null }));
+              }}
             >
               <Trash2 className="h-5 w-5" />
             </button>

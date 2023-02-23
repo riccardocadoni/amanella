@@ -5,17 +5,17 @@ const testimonials = [
     {
       originalImg: "/mountain.jpg",
       generatedImg: "/mountain-ai.jpg",
-      prompt: "A mountain",
+      prompt: "Mountain",
     },
     {
       originalImg: "/dog.jpg",
       generatedImg: "/dog-ai.jpg",
-      prompt: "A dog",
+      prompt: "Dog",
     },
     {
       originalImg: "/flower.jpg",
       generatedImg: "/flower-ai.jpg",
-      prompt: "A flower",
+      prompt: "Flower",
     },
   ],
 ];

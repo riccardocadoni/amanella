@@ -267,7 +267,7 @@ export default function Dropzone() {
             type="text"
             id="prompt"
             className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:outline-black w-full p-2.5 "
-            placeholder="Descrivi il soggetto in inglese, es. A dog"
+            placeholder="Descrivi il soggetto in inglese, es. Mountain"
             value={data.prompt || ""}
             onChange={(e) =>
               setData((prev) => ({ ...prev, prompt: e.target?.value }))

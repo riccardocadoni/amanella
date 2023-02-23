@@ -32,7 +32,7 @@ export default async function handler(
   ); */
 
   if (req.method === "POST") {
-    //const promptSample = "oil painting, beautifully colored, masterpiece";
+    const enrichedPrompt = `oil painting, beautifully colored ${prompt}, masterpiece`;
     const aPrompt = "best quality, extremely detailed";
     const negativePrompt =
       "longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality";
@@ -49,7 +49,7 @@ export default async function handler(
         body: JSON.stringify({
           version: HED_ENDPOINT,
           input: {
-            prompt: prompt,
+            prompt: enrichedPrompt,
             n_prompt: negativePrompt,
             input_image: image,
             a_prompt: aPrompt,

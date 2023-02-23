@@ -219,7 +219,7 @@ export default function Dropzone() {
               }`}
             >
               <p className="mt-2 text-center text-sm text-gray-500">
-                Trascina e rilascia o fai click per caricare l'immagine
+                Trascina e rilascia o fai click per caricare l&apos;immagine
               </p>
               <span className="sr-only">Photo upload</span>
             </div>
@@ -253,7 +253,7 @@ export default function Dropzone() {
             type="text"
             id="prompt"
             className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:outline-black w-full p-2.5 "
-            placeholder="Descrivi il soggetto, es. 'un cavallo'"
+            placeholder="Descrivi il soggetto in inglese, es. A dog"
             value={data.prompt || ""}
             onChange={(e) =>
               setData((prev) => ({ ...prev, prompt: e.target?.value }))

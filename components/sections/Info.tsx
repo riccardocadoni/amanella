@@ -8,7 +8,7 @@ export default function Info() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Questo prodotto utilizza un modello di intelligenza artificiale per
-            generare una nuova immagine partendo da un'immagine di input e
+            generare una nuova immagine partendo da un&apos;immagine di input e
             mantenendone la struttura. (Stable diffusion - ControlNet)
           </p>
           <h1 className="mx-auto mt-8 max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
@@ -16,7 +16,7 @@ export default function Info() {
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             La privacy è importante, le immagini che carichi e quelle generate
-            vengono cancellate automaticamente dopo un'ora.
+            vengono cancellate automaticamente dopo un&apos;ora.
           </p>
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Non salviamo le tue creazioni, ricordati quindi di scaricare le

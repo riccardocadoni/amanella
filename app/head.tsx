@@ -7,6 +7,11 @@ export default function Head() {
         name="description"
         content="Generate images from drawings with ai"
       />
+      <meta property="og:title" content="Amanella" />
+      <meta
+        property="og:description"
+        content="Generate images from drawings with ai"
+      />
       <link rel="icon" href="/favicon.ico" />
     </>
   );

@@ -66,13 +66,13 @@ export default function Dropzone() {
   if (isLoading) {
     return (
       <section id="dropzone" aria-label="Core component" className="py-10">
-        <div className="flex flex-col justify-center gap-5 items-center w-full h-64">
-          <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
+        <div className="flex flex-col justify-center gap-5 items-center w-full h-64 px-5">
+          <p className=" mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Lo sappiamo che stai ansiosamente aspettando... ma il risultato ne
             varrà la pena!
           </p>
           <LoadingDots color="black" style="large" />
-          <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
+          <p className=" mt-6 max-w-xl text-lg text-slate-700 leading-7">
             Solitamente pronto in pochi secondi, in alcuni casi potrebbe
             impiegarci qualche minuto 🚀
           </p>
@@ -85,7 +85,7 @@ export default function Dropzone() {
     const originalPhoto = data?.image;
     return (
       <section id="dropzone" aria-label="Core component" className="py-10">
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center gap-2 px-5">
           <div className="flex sm:space-x-2 sm:flex-row flex-col">
             <Image
               src={originalPhoto!}
@@ -138,7 +138,7 @@ export default function Dropzone() {
                 );
               }}
               className={
-                "border-black bg-black text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none"
+                "border-black bg-black text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none invisible md:visible"
               }
             >
               <p className="text-sm mr-3">Scarica la foto</p>

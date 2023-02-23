@@ -1,12 +1,6 @@
 import styles from "../styles/loading-dots.module.css";
 
-const LoadingDots = ({
-  color = "#000",
-  style = "small",
-}: {
-  color: string;
-  style: string;
-}) => {
+const LoadingDots = ({ style = "small" }: { color: string; style: string }) => {
   return (
     <span className={style == "small" ? styles.loading2 : styles.loading}>
       <span className="bg-yellow-400" />
@@ -17,7 +11,3 @@ const LoadingDots = ({
 };
 
 export default LoadingDots;
-
-LoadingDots.defaultProps = {
-  style: "small",
-};

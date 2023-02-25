@@ -1,20 +1,26 @@
 import ImagesCard from "../ImagesCard";
+import mountain from "../../public/mountain.jpg";
+import mountainAI from "../../public/mountain-ai.jpg";
+import dog from "../../public/dog.jpg";
+import dogAI from "../../public/dog-ai.jpg";
+import flower from "../../public/flower.jpg";
+import flowerAI from "../../public/flower-ai.jpg";
 
 const testimonials = [
   [
     {
-      originalImg: "/mountain.jpg",
-      generatedImg: "/mountain-ai.jpg",
+      originalImg: mountain,
+      generatedImg: mountainAI,
       prompt: "Mountain",
     },
     {
-      originalImg: "/dog.jpg",
-      generatedImg: "/dog-ai.jpg",
+      originalImg: dog,
+      generatedImg: dogAI,
       prompt: "Dog",
     },
     {
-      originalImg: "/flower.jpg",
-      generatedImg: "/flower-ai.jpg",
+      originalImg: flower,
+      generatedImg: flowerAI,
       prompt: "Flower",
     },
   ],

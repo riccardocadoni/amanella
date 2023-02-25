@@ -10,6 +10,7 @@ export interface IGenerationVisualizer {
   generatedImageUrl: string | null;
   prompt: string | null;
   isLoading: boolean;
+  isScribble?: boolean;
   setGeneratedImageUrl: Dispatch<SetStateAction<string | null>>;
   setData: Dispatch<
     SetStateAction<{
@@ -27,6 +28,7 @@ function GenerationVisualizer({
   generatedImageUrl,
   prompt,
   isLoading,
+  isScribble,
   setGeneratedImageUrl,
   setData,
 }: IGenerationVisualizer) {
@@ -56,20 +58,22 @@ function GenerationVisualizer({
         </div>
         {!isLoading && (
           <div className="flex sm:flex-row flex-col w-full gap-2">
-            <button
-              className={
-                "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setGeneratedImageUrl(null);
-                setData({ image: null, prompt: null });
-              }}
-            >
-              <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
-                <p className="text-sm">Nuova immagine</p>
-              </span>
-            </button>
+            {!isScribble && (
+              <button
+                className={
+                  "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
+                }
+                onClick={(e) => {
+                  e.preventDefault();
+                  setGeneratedImageUrl(null);
+                  setData({ image: null, prompt: null });
+                }}
+              >
+                <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
+                  <p className="text-sm">Nuova immagine</p>
+                </span>
+              </button>
+            )}
             <button
               className={
                 "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"

@@ -24,7 +24,7 @@ export default async function handler(
 ) {
   const { image, prompt } = await req.json();
 
-  const fixedimageurl =
+  /* const fixedimageurl =
     "https://replicate.delivery/pbxt/QCu7ptAKCVbBMt6ot8dFbQjfxAgZjd1667b27gQEbWjuj9QIA/output_1.png";
   await new Promise((resolve) => setTimeout(resolve, 2000));
   return new Response(
@@ -32,7 +32,7 @@ export default async function handler(
       generatedImageUrl: fixedimageurl,
     }),
     { status: 200 }
-  );
+  ); */
 
   if (req.method === "POST") {
     const enrichedPrompt = `oil painting, beautifully colored ${prompt}, masterpiece`;

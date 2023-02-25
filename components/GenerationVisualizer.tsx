@@ -31,7 +31,7 @@ function GenerationVisualizer({
   setData,
 }: IGenerationVisualizer) {
   return (
-    <section id="dropzone" aria-label="Core component" className="py-10">
+    <div className="py-10">
       <div className="flex flex-col items-center gap-2 px-5">
         <p>{`"..${prompt}"`}</p>
         <div className="flex sm:space-x-2 sm:flex-row flex-col">
@@ -100,7 +100,7 @@ function GenerationVisualizer({
           </div>
         )}
       </div>
-    </section>
+    </div>
     /*   <div className="flex flex-col rounded-2xl bg-white p-3 shadow-xl shadow-slate-900/10">
       
     </div> */

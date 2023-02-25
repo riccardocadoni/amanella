@@ -28,11 +28,7 @@ const testimonials = [
 
 export default function CaseHistory() {
   return (
-    <section
-      id="testimonials"
-      aria-label="What our customers are saying"
-      className="py-10"
-    >
+    <div className="py-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto md:text-center">
           <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
@@ -74,6 +70,6 @@ export default function CaseHistory() {
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   );
 }

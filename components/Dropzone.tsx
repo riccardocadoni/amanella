@@ -82,7 +82,7 @@ export default function Dropzone() {
   }
 
   return (
-    <section id="dropzone" aria-label="Core component" className="py-10 ">
+    <div className="py-10 ">
       <form
         className="flex flex-col gap-6 bg-gray-50"
         onSubmit={(e) => handleGeneration(e)}
@@ -226,6 +226,6 @@ export default function Dropzone() {
           </span>
         </button>
       </form>
-    </section>
+    </div>
   );
 }

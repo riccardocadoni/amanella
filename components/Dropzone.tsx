@@ -151,7 +151,7 @@ export default function Dropzone() {
               }`}
             >
               <p className="mt-2 text-center text-sm text-gray-500">
-                Trascina e rilascia o fai click per caricare l&apos;immagine
+                Trascina e rilascia o fai click per caricare il disegno
               </p>
               <span className="sr-only">Photo upload</span>
             </div>

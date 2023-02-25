@@ -78,6 +78,7 @@ export default function Canvas({
         <button
           className="disabled:opacity-30"
           onClick={undo}
+          type="button"
           disabled={!scribbleExists}
         >
           <UndoIcon className="h-5 w-5" />
@@ -85,6 +86,7 @@ export default function Canvas({
         <button
           className="disabled:opacity-30"
           onClick={reset}
+          type="button"
           disabled={!scribbleExists}
         >
           <TrashIcon className="h-5 w-5" />

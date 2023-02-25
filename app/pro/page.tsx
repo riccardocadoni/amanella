@@ -9,7 +9,6 @@ export default function Home() {
       <HeadPro />
       <Dropzone />
       <CaseHistory />
-      <Info />
     </div>
   );
 }

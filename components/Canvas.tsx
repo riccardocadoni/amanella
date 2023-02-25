@@ -56,7 +56,7 @@ export default function Canvas({
   };
 
   return (
-    <div className="relative md:w-[400px] ">
+    <div className="relative w-[350px] h-[430px] md:w-[400px] ">
       {scribbleExists || (
         <div>
           <div className="absolute grid w-full h-full p-3 place-items-center pointer-events-none text-xl">

@@ -5,6 +5,8 @@ import LoadingDots from "./LoadingDots";
 import downloadPhoto from "../utils/downloadPhoto";
 import appendNewToName from "../utils/appendNewToName";
 import { Download, Wand2, Trash2 } from "lucide-react";
+import GenerationVisualizer from "./GenerationVisualizer";
+import Loading from "./Loading";
 
 const IMAGE_WIDTH = 500;
 const IMAGE_HEIGHT = 500;
@@ -63,95 +65,24 @@ export default function Dropzone() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <section id="dropzone" aria-label="Core component" className="py-10">
-        <div className="flex flex-col justify-center gap-5 items-center w-full h-64 px-5">
-          <p className=" mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            Lo sappiamo che stai ansiosamente aspettando... ma il risultato ne
-            varrà la pena!
-          </p>
-          <LoadingDots color="black" style="large" />
-          <p className=" mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            Solitamente pronto in pochi secondi, in alcuni casi potrebbe
-            impiegarci qualche minuto 🚀
-          </p>
-        </div>
-      </section>
-    );
-  }
-
-  if (generatedImageUrl) {
+  if (generatedImageUrl || isLoading) {
     const originalPhoto = data?.image;
+    const prompt = data?.prompt;
     return (
-      <section id="dropzone" aria-label="Core component" className="py-10">
-        <div className="flex flex-col items-center gap-2 px-5">
-          <div className="flex sm:space-x-2 sm:flex-row flex-col">
-            <Image
-              src={originalPhoto!}
-              alt="Drawing"
-              width={IMAGE_WIDTH}
-              height={IMAGE_HEIGHT}
-              className="rounded-md border"
-            />
-            <Image
-              src={generatedImageUrl}
-              alt="Genereated image"
-              width={IMAGE_WIDTH}
-              height={IMAGE_HEIGHT}
-              className="rounded-md border"
-            />
-          </div>
-          <div className="flex sm:flex-row flex-col w-full gap-2">
-            <button
-              className={
-                "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setGeneratedImageUrl(null);
-                setData({ image: null, prompt: null });
-              }}
-            >
-              <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
-                <p className="text-sm">Nuova immagine</p>
-              </span>
-            </button>
-            <button
-              className={
-                "p-0.5 bg-gradient-to-r to-red-600 via-orange-500 from-yellow-400 hover:text-white flex w-full items-center justify-center rounded-md text-sm transition-all"
-              }
-              onClick={(e) => {
-                e.preventDefault();
-                setGeneratedImageUrl(null);
-              }}
-            >
-              <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
-                <p className="text-sm">Prova ancora</p>
-              </span>
-            </button>
-            <button
-              onClick={() => {
-                downloadPhoto(
-                  generatedImageUrl!,
-                  appendNewToName("amanella-image")
-                );
-              }}
-              className={
-                "border-black bg-black text-white hover:bg-white hover:text-black flex w-full h-10 items-center justify-center rounded-md border text-sm transition-all focus:outline-none invisible md:visible"
-              }
-            >
-              <p className="text-sm mr-3">Scarica la foto</p>
-              <Download className="h-5 w-5 group-hover:text-black" />
-            </button>
-          </div>
-        </div>
-      </section>
+      <GenerationVisualizer
+        isLoading={isLoading}
+        //originalPhoto={"/../public/dog.jpg"}
+        originalPhoto={originalPhoto}
+        prompt={prompt}
+        generatedImageUrl={generatedImageUrl}
+        setGeneratedImageUrl={setGeneratedImageUrl}
+        setData={setData}
+      />
     );
   }
 
   return (
-    <section id="dropzone" aria-label="Core component" className="py-10">
+    <div className="py-10 ">
       <form
         className="flex flex-col gap-6 bg-gray-50"
         onSubmit={(e) => handleGeneration(e)}
@@ -295,6 +226,6 @@ export default function Dropzone() {
           </span>
         </button>
       </form>
-    </section>
+    </div>
   );
 }

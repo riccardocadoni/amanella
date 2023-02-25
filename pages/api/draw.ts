@@ -6,6 +6,8 @@ type ResData = {
   generatedImageURl?: string | null;
   message?: string;
 };
+const CONTROL_NET_ENDPOINT =
+  "8ebda4c70b3ea2a2bf86e44595afb562a2cdf85525c620f1671a78113c9f325b";
 const HED_ENDPOINT =
   "cde353130c86f37d0af4060cd757ab3009cac68eb58df216768f907f0d0a0653";
 //requires image not input_image
@@ -23,7 +25,8 @@ export default async function handler(
   const { image, prompt } = await req.json();
 
   /* const fixedimageurl =
-    "https://replicate.delivery/pbxt/fRfcw14rE8hfNJlfbKhYfj4RZGvujYxf84UGHyjHhJofqRpQIA/output_1.png";
+    "https://replicate.delivery/pbxt/QCu7ptAKCVbBMt6ot8dFbQjfxAgZjd1667b27gQEbWjuj9QIA/output_1.png";
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return new Response(
     JSON.stringify({
       generatedImageUrl: fixedimageurl,
@@ -47,11 +50,12 @@ export default async function handler(
           Authorization: "Token " + process.env.REPLICATE_API_KEY,
         },
         body: JSON.stringify({
-          version: HED_ENDPOINT,
+          version: CONTROL_NET_ENDPOINT,
           input: {
             prompt: enrichedPrompt,
             n_prompt: negativePrompt,
-            input_image: image,
+            model_type: "hed",
+            image: image,
             a_prompt: aPrompt,
             num_samples: "1",
           },

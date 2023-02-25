@@ -1,20 +1,26 @@
 import ImagesCard from "../ImagesCard";
+import mountain from "../../public/mountain.jpg";
+import mountainAI from "../../public/mountain-ai.jpg";
+import dog from "../../public/dog.jpg";
+import dogAI from "../../public/dog-ai.jpg";
+import flower from "../../public/flower.jpg";
+import flowerAI from "../../public/flower-ai.jpg";
 
 const testimonials = [
   [
     {
-      originalImg: "/mountain.jpg",
-      generatedImg: "/mountain-ai.jpg",
+      originalImg: mountain,
+      generatedImg: mountainAI,
       prompt: "Mountain",
     },
     {
-      originalImg: "/dog.jpg",
-      generatedImg: "/dog-ai.jpg",
+      originalImg: dog,
+      generatedImg: dogAI,
       prompt: "Dog",
     },
     {
-      originalImg: "/flower.jpg",
-      generatedImg: "/flower-ai.jpg",
+      originalImg: flower,
+      generatedImg: flowerAI,
       prompt: "Flower",
     },
   ],
@@ -22,11 +28,7 @@ const testimonials = [
 
 export default function CaseHistory() {
   return (
-    <section
-      id="testimonials"
-      aria-label="What our customers are saying"
-      className="py-10"
-    >
+    <div className="py-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto md:text-center">
           <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
@@ -68,6 +70,6 @@ export default function CaseHistory() {
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   );
 }

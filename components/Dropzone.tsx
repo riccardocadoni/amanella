@@ -1,12 +1,8 @@
 "use client";
 import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import LoadingDots from "./LoadingDots";
-import downloadPhoto from "../utils/downloadPhoto";
-import appendNewToName from "../utils/appendNewToName";
-import { Download, Wand2, Trash2 } from "lucide-react";
+import { Wand2, Trash2 } from "lucide-react";
 import GenerationVisualizer from "./GenerationVisualizer";
-import Loading from "./Loading";
 
 const IMAGE_WIDTH = 500;
 const IMAGE_HEIGHT = 500;
@@ -151,7 +147,7 @@ export default function Dropzone() {
               }`}
             >
               <p className="mt-2 text-center text-sm text-gray-500">
-                Trascina e rilascia o fai click per caricare l&apos;immagine
+                Trascina e rilascia o fai click per caricare il disegno
               </p>
               <span className="sr-only">Photo upload</span>
             </div>

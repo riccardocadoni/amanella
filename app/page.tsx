@@ -1,15 +1,13 @@
-import Dropzone from "../components/Dropzone";
-import CaseHistory from "../components/sections/CaseHistory";
-import Head from "../components/sections/Head";
-import Info from "../components/sections/Info";
+import Scribble from "@/components/components/Scribble";
+import CaseHistoryScribble from "../components/sections/CaseHistoryScribble";
+import HeadScribble from "../components/sections/HeadScribble";
 
 export default function Home() {
   return (
     <div className="flex flex-col justify-center items-center text-center divide-y pb-10">
-      <Head />
-      <Dropzone />
-      <CaseHistory />
-      <Info />
+      <HeadScribble />
+      <Scribble />
+      <CaseHistoryScribble />
     </div>
   );
 }

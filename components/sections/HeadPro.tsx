@@ -1,4 +1,4 @@
-export default function Head() {
+export default function HeadPro() {
   return (
     <div className="py-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">

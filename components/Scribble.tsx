@@ -18,7 +18,7 @@ export default function Scribble() {
     prompt: string | null;
   }>({
     image: null,
-    prompt: null,
+    prompt: "A red owl",
   });
   const [scribbleExists, setScribbleExists] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -69,12 +69,14 @@ export default function Scribble() {
   return (
     <div className="py-10 ">
       <form
-        className="flex flex-col gap-6 bg-gray-50"
+        className="flex flex-col gap-4 bg-gray-50"
         onSubmit={(e) => handleGeneration(e)}
       >
         <div className="w-full">
           <div className="flex items-center justify-between">
-            <p className="block text-sm font-medium text-gray-700">Disegno</p>
+            <p className="block text-sm font-medium">
+              Puoi disegnare quello che vuoi!
+            </p>
           </div>
         </div>
         <Canvas

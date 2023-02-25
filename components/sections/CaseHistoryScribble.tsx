@@ -1,47 +1,37 @@
 import ImagesCard from "../ImagesCard";
-import mountain from "../../public/mountain.jpg";
-import mountainAI from "../../public/mountain-ai.jpg";
-import dog from "../../public/dog.jpg";
-import dogAI from "../../public/dog-ai.jpg";
-import flower from "../../public/flower.jpg";
-import flowerAI from "../../public/flower-ai.jpg";
+import owl from "../../public/owl.jpg";
+import owlAI from "../../public/owl-ai.jpg";
+import palm from "../../public/palm.jpg";
+import palmAI from "../../public/palm-ai.jpg";
 
 const creations = [
   [
     {
-      originalImg: mountain,
-      generatedImg: mountainAI,
-      prompt: "Mountain",
+      originalImg: owl,
+      generatedImg: owlAI,
+      prompt: "Owl",
     },
     {
-      originalImg: dog,
-      generatedImg: dogAI,
-      prompt: "Dog",
-    },
-    {
-      originalImg: flower,
-      generatedImg: flowerAI,
-      prompt: "Flower",
+      originalImg: palm,
+      generatedImg: palmAI,
+      prompt: "Palm",
     },
   ],
 ];
 
-export default function CaseHistory() {
+export default function CaseHistoryScribble() {
   return (
     <div className="py-10">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto md:text-center">
           <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl">
-            Amato da migliaia di artisti
+            I disegni li facciamo{" "}
+            <span className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400">
+              Amanella
+            </span>
           </h1>
-          {/*  <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            Il nostro sito ti permette di caricare i tuoi disegni fatti a mano e
-            di trasformarli in immagini colorate e dettagliate. Basta caricare
-            una foto del tuo disegno e il modello di intelligenza artificiale
-            farà il resto!
-          </p> */}
           <p className="mx-auto mt-6 max-w-xl text-lg text-slate-700 leading-7">
-            Ecco alcuni esempi, tutti creati con Amanella
+            Se non ti fidi, ecco alcuni esempi
           </p>
         </div>
         <ul

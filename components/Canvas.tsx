@@ -60,7 +60,7 @@ export default function Canvas({
       {scribbleExists || (
         <div>
           <div className="absolute grid w-full h-full p-3 place-items-center pointer-events-none text-xl">
-            <span className="opacity-40">Draw something here.</span>
+            <span className="opacity-40">Disegna qualcosa!</span>
           </div>
         </div>
       )}

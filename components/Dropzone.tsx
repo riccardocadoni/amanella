@@ -193,6 +193,7 @@ export default function Dropzone() {
           <input
             type="text"
             id="prompt"
+            accept="image/png,image/jpeg"
             className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:outline-black w-full p-2.5 "
             placeholder="Descrivi il soggetto in inglese, es. Mountain"
             value={data.prompt || ""}

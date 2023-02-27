@@ -52,7 +52,7 @@ export default async function handler(
         body: JSON.stringify({
           version: CONTROL_NET_ENDPOINT,
           input: {
-            prompt: enrichedPrompt,
+            prompt: prompt,
             n_prompt: negativePrompt,
             model_type: "hed",
             image: image,

@@ -1,16 +1,8 @@
 "use client";
-import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
-import Image from "next/image";
-import LoadingDots from "./LoadingDots";
-import downloadPhoto from "../utils/downloadPhoto";
-import appendNewToName from "../utils/appendNewToName";
-import { Download, Wand2, Trash2 } from "lucide-react";
+import { FormEvent, useState } from "react";
+import { Wand2 } from "lucide-react";
 import GenerationVisualizer from "./GenerationVisualizer";
-import Loading from "./Loading";
-import Canvas from "./Canvas";
-
-const IMAGE_WIDTH = 500;
-const IMAGE_HEIGHT = 500;
+import Canvas, { IPath } from "./Canvas";
 
 export default function Scribble() {
   const [data, setData] = useState<{
@@ -21,6 +13,7 @@ export default function Scribble() {
     prompt: "A red owl",
   });
   const [scribbleExists, setScribbleExists] = useState(false);
+  const [paths, setPaths] = useState<IPath[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
     null
@@ -83,6 +76,8 @@ export default function Scribble() {
           setData={setData}
           scribbleExists={scribbleExists}
           setScribbleExists={setScribbleExists}
+          paths={paths}
+          setPaths={setPaths}
         />
         <div className="flex flex-col text-left">
           <label className="mb-2 text-sm font-medium text-black">

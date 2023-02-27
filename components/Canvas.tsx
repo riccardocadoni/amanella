@@ -4,6 +4,18 @@ import { ReactSketchCanvas } from "react-sketch-canvas";
 import seed from "lib/seed";
 import { Undo2 as UndoIcon, Trash2 as TrashIcon } from "lucide-react";
 
+export interface IPath {
+  drawMode: boolean;
+  strokeColor: string;
+  strokeWidth: number;
+  paths: {
+    x: number;
+    y: number;
+  }[];
+  startTimestamp: number;
+  endTimestamp: number;
+}
+
 export interface ICanvas {
   setData: Dispatch<
     SetStateAction<{
@@ -13,35 +25,42 @@ export interface ICanvas {
   >;
   scribbleExists: boolean;
   setScribbleExists: Dispatch<SetStateAction<boolean>>;
+  paths?: any;
+  setPaths?: any;
 }
 
 export default function Canvas({
   setData,
   scribbleExists,
   setScribbleExists,
+  paths,
+  setPaths,
 }: ICanvas) {
   const canvasRef = React.useRef<any>(null);
 
   useEffect(() => {
-    loadStartingPaths();
+    loadPaths();
   }, []);
+
+  async function loadPaths() {
+    if (paths) {
+      await canvasRef.current.loadPaths(paths);
+    } else loadStartingPaths();
+  }
 
   const startingPaths = seed;
 
   async function loadStartingPaths() {
     await canvasRef.current.loadPaths(startingPaths.paths);
     setScribbleExists(true);
-    onChange();
+    onStroke();
   }
 
-  const onChange = async () => {
+  const onStroke = async () => {
     const paths = await canvasRef.current.exportPaths();
-    localStorage.setItem("paths", JSON.stringify(paths, null, 2));
-
     if (!paths.length) return;
-
     setScribbleExists(true);
-
+    setPaths(paths);
     const data = await canvasRef.current.exportImage("png");
     setData((prev) => ({ ...prev, image: data }));
   };
@@ -70,7 +89,7 @@ export default function Canvas({
         className="w-full aspect-square border-none cursor-crosshair rounded-none"
         strokeWidth={4}
         strokeColor="black"
-        onChange={onChange}
+        onStroke={onStroke}
         withTimestamp={true}
       />
 

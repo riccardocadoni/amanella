@@ -16,6 +16,7 @@ export default function Dropzone() {
     prompt: null,
   });
   const [fileSizeTooBig, setFileSizeTooBig] = useState(false);
+  const [imageFormatError, setImageFormatError] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
@@ -28,6 +29,10 @@ export default function Dropzone() {
       setFileSizeTooBig(false);
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
+        console.log("file", file);
+        if (file.type !== "image/jpeg" || "image/png") {
+          setImageFormatError(true);
+        }
         if (file.size / 1024 / 1024 > 5) {
           setFileSizeTooBig(true);
         } else {
@@ -89,6 +94,11 @@ export default function Dropzone() {
             {fileSizeTooBig && (
               <p className="text-sm text-red-500">
                 File size too big (max 5MB)
+              </p>
+            )}
+            {imageFormatError && (
+              <p className="text-sm text-red-500">
+                Formato immagine incorretto (jpeg,png)
               </p>
             )}
           </div>
@@ -193,7 +203,6 @@ export default function Dropzone() {
           <input
             type="text"
             id="prompt"
-            accept="image/png,image/jpeg"
             className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:outline-black w-full p-2.5 "
             placeholder="Descrivi il soggetto in inglese, es. Mountain"
             value={data.prompt || ""}

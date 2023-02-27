@@ -27,10 +27,14 @@ export default function Dropzone() {
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setFileSizeTooBig(false);
+      setImageFormatError(false);
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
-        console.log("file", file);
-        if (file.type !== "image/jpeg" || "image/png" || "image/heic") {
+        if (
+          file.type !== "image/jpeg" &&
+          file.type !== "image/png" &&
+          file.type !== "image/heic"
+        ) {
           setImageFormatError(true);
         }
         if (file.size / 1024 / 1024 > 5) {

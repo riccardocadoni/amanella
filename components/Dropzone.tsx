@@ -30,7 +30,7 @@ export default function Dropzone() {
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
         console.log("file", file);
-        if (file.type !== "image/jpeg" || "image/png") {
+        if (file.type !== "image/jpeg" || "image/png" || "image/heic") {
           setImageFormatError(true);
         }
         if (file.size / 1024 / 1024 > 5) {

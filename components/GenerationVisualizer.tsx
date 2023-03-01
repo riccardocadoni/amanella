@@ -1,5 +1,5 @@
 import { Download } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import appendNewToName from "../utils/appendNewToName";
 import downloadPhoto from "../utils/downloadPhoto";
@@ -16,6 +16,7 @@ export interface IGenerationVisualizer {
     SetStateAction<{
       image: string | null;
       prompt: string | null;
+      isOilPainting: boolean;
     }>
   >;
 }
@@ -66,7 +67,7 @@ function GenerationVisualizer({
                 onClick={(e) => {
                   e.preventDefault();
                   setGeneratedImageUrl(null);
-                  setData({ image: null, prompt: null });
+                  setData((prev) => ({ ...prev, image: null, prompt: null }));
                 }}
               >
                 <span className="bg-white hover:bg-inherit hover:text-white flex flex-grow items-center justify-center text-black px-4 py-2 font-semibold rounded">
@@ -105,9 +106,6 @@ function GenerationVisualizer({
         )}
       </div>
     </div>
-    /*   <div className="flex flex-col rounded-2xl bg-white p-3 shadow-xl shadow-slate-900/10">
-      
-    </div> */
   );
 }
 

@@ -22,7 +22,7 @@ export default async function handler(
   req: NextRequest,
   res: NextApiResponse<ResData>
 ) {
-  const { image, prompt } = await req.json();
+  const { image, prompt, isOilPainting } = await req.json();
 
   /* const fixedimageurl =
     "https://replicate.delivery/pbxt/QCu7ptAKCVbBMt6ot8dFbQjfxAgZjd1667b27gQEbWjuj9QIA/output_1.png";
@@ -35,7 +35,9 @@ export default async function handler(
   ); */
 
   if (req.method === "POST") {
-    const enrichedPrompt = `oil painting, beautifully colored ${prompt}, masterpiece`;
+    const enrichedPrompt = isOilPainting
+      ? `An oil painting of a beautiful ${prompt}, masterpiece`
+      : `A photo of ${prompt}, realistic, 4k ,iperrealism`;
     const aPrompt = "best quality, extremely detailed";
     const negativePrompt =
       "longbody, lowres, bad anatomy, bad hands, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality";
@@ -52,7 +54,7 @@ export default async function handler(
         body: JSON.stringify({
           version: CONTROL_NET_ENDPOINT,
           input: {
-            prompt: prompt,
+            prompt: enrichedPrompt,
             n_prompt: negativePrompt,
             model_type: "hed",
             image: image,

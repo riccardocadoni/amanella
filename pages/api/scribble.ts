@@ -18,7 +18,7 @@ export default async function handler(
   req: NextRequest,
   res: NextApiResponse<ResData>
 ) {
-  const { image, prompt } = await req.json();
+  const { image, prompt, isOilPainting } = await req.json();
 
   /* const fixedimageurl =
     "https://replicate.delivery/pbxt/QCu7ptAKCVbBMt6ot8dFbQjfxAgZjd1667b27gQEbWjuj9QIA/output_1.png";
@@ -31,7 +31,9 @@ export default async function handler(
   ); */
 
   if (req.method === "POST") {
-    // const enrichedPrompt = `oil painting, beautifully colored ${prompt}, masterpiece`;
+    const enrichedPrompt = isOilPainting
+      ? `An oil painting of a beautiful ${prompt}, masterpiece`
+      : `A photo of ${prompt}, realistic, 4k ,iperrealism`;
     // POST request to Replicate to start the image restoration generation process
     let startResponse = await fetch(
       "https://api.replicate.com/v1/predictions",
@@ -44,7 +46,7 @@ export default async function handler(
         body: JSON.stringify({
           version: SCRIBBLE_ENDPOINT,
           input: {
-            prompt: prompt,
+            prompt: enrichedPrompt,
             image: image,
             num_samples: "1",
           },

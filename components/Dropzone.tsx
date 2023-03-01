@@ -3,19 +3,27 @@ import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { Wand2, Trash2 } from "lucide-react";
 import GenerationVisualizer from "./GenerationVisualizer";
+import ColoredRadioButton from "./ColoredRadioButton";
 
 const IMAGE_WIDTH = 500;
 const IMAGE_HEIGHT = 500;
 
-export default function Dropzone() {
+export interface IDropzone {
+  isScribble?: boolean;
+}
+
+export default function Dropzone({ isScribble = false }: IDropzone) {
   const [data, setData] = useState<{
     image: string | null;
     prompt: string | null;
+    isOilPainting: boolean;
   }>({
     image: null,
     prompt: null,
+    isOilPainting: true,
   });
   const [fileSizeTooBig, setFileSizeTooBig] = useState(false);
+  const [imageFormatError, setImageFormatError] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
@@ -26,8 +34,16 @@ export default function Dropzone() {
   const onChangePicture = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setFileSizeTooBig(false);
+      setImageFormatError(false);
       const file = event.currentTarget.files && event.currentTarget.files[0];
       if (file) {
+        if (
+          file.type !== "image/jpeg" &&
+          file.type !== "image/png" &&
+          file.type !== "image/heic"
+        ) {
+          setImageFormatError(true);
+        }
         if (file.size / 1024 / 1024 > 5) {
           setFileSizeTooBig(true);
         } else {
@@ -45,9 +61,10 @@ export default function Dropzone() {
   const handleGeneration = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    const apiRoute = isScribble ? "scribble" : "draw";
     if (!data.image) return;
     if (!data.prompt) return;
-    const res = await fetch("/api/draw", {
+    const res = await fetch(`/api/${apiRoute}`, {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -67,7 +84,6 @@ export default function Dropzone() {
     return (
       <GenerationVisualizer
         isLoading={isLoading}
-        //originalPhoto={"/../public/dog.jpg"}
         originalPhoto={originalPhoto}
         prompt={prompt}
         generatedImageUrl={generatedImageUrl}
@@ -80,22 +96,31 @@ export default function Dropzone() {
   return (
     <div className="py-10 ">
       <form
-        className="flex flex-col gap-6 bg-gray-50"
+        className="flex flex-col gap-6 bg-gray-50 text-left"
         onSubmit={(e) => handleGeneration(e)}
       >
         <div className="w-full">
           <div className="flex items-center justify-between">
-            <p className="block text-sm font-medium text-gray-700">Disegno</p>
+            <p className="block text-sm font-medium text-gray-700">
+              Carica il tuo disegno
+            </p>
             {fileSizeTooBig && (
               <p className="text-sm text-red-500">
                 File size too big (max 5MB)
+              </p>
+            )}
+            {imageFormatError && (
+              <p className="text-sm text-red-500">
+                Formato immagine incorretto (jpeg,png)
               </p>
             )}
           </div>
           <label
             htmlFor="image-upload"
             className={`group relative mt-2 flex cursor-pointer flex-col items-center justify-center rounded-md border border-gray-300 bg-white shadow-sm transition-all hover:bg-gray-50 ${
-              data.image ? "w-64 h-auto md:w-96" : "w-64 h-64 md:w-96 md:h-64"
+              data.image
+                ? "w-[22rem] h-auto md:w-96"
+                : "w-[22rem] h-64 md:w-96 md:h-64"
             }`}
           >
             <div
@@ -200,6 +225,25 @@ export default function Dropzone() {
               setData((prev) => ({ ...prev, prompt: e.target?.value }))
             }
           />
+        </div>
+        <div>
+          <p className="mb-2 text-sm font-medium text-black">Scegli lo stile</p>
+          <div className="flex gap-2 items-center justify-center ">
+            <ColoredRadioButton
+              isDisabled={data.isOilPainting}
+              onClick={() =>
+                setData((prev) => ({ ...prev, isOilPainting: true }))
+              }
+              text={"Artistico"}
+            />
+            <ColoredRadioButton
+              isDisabled={!data.isOilPainting}
+              onClick={() =>
+                setData((prev) => ({ ...prev, isOilPainting: false }))
+              }
+              text={"Realistico"}
+            />
+          </div>
         </div>
 
         <button

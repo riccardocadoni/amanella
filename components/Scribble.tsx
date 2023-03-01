@@ -1,26 +1,22 @@
 "use client";
-import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
-import Image from "next/image";
-import LoadingDots from "./LoadingDots";
-import downloadPhoto from "../utils/downloadPhoto";
-import appendNewToName from "../utils/appendNewToName";
-import { Download, Wand2, Trash2 } from "lucide-react";
+import { FormEvent, useState } from "react";
+import { Wand2 } from "lucide-react";
 import GenerationVisualizer from "./GenerationVisualizer";
-import Loading from "./Loading";
-import Canvas from "./Canvas";
-
-const IMAGE_WIDTH = 500;
-const IMAGE_HEIGHT = 500;
+import Canvas, { IPath } from "./Canvas";
+import ColoredRadioButton from "./ColoredRadioButton";
 
 export default function Scribble() {
   const [data, setData] = useState<{
-    image: any;
+    image: string | null;
     prompt: string | null;
+    isOilPainting: boolean;
   }>({
     image: null,
-    prompt: "A red owl",
+    prompt: "An owl",
+    isOilPainting: true,
   });
   const [scribbleExists, setScribbleExists] = useState(false);
+  const [paths, setPaths] = useState<IPath[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [generatedImageUrl, setGeneratedImageUrl] = useState<string | null>(
     null
@@ -69,7 +65,7 @@ export default function Scribble() {
   return (
     <div className="py-10 ">
       <form
-        className="flex flex-col gap-4 bg-gray-50"
+        className="flex flex-col gap-3 bg-gray-50 text-left"
         onSubmit={(e) => handleGeneration(e)}
       >
         <div className="w-full">
@@ -83,6 +79,8 @@ export default function Scribble() {
           setData={setData}
           scribbleExists={scribbleExists}
           setScribbleExists={setScribbleExists}
+          paths={paths}
+          setPaths={setPaths}
         />
         <div className="flex flex-col text-left">
           <label className="mb-2 text-sm font-medium text-black">
@@ -99,7 +97,25 @@ export default function Scribble() {
             }
           />
         </div>
-
+        <div>
+          <p className="mb-2 text-sm font-medium text-black">Scegli lo stile</p>
+          <div className="flex gap-2 items-center justify-center mb-2">
+            <ColoredRadioButton
+              isDisabled={data.isOilPainting}
+              onClick={() =>
+                setData((prev) => ({ ...prev, isOilPainting: true }))
+              }
+              text={"Artistico"}
+            />
+            <ColoredRadioButton
+              isDisabled={!data.isOilPainting}
+              onClick={() =>
+                setData((prev) => ({ ...prev, isOilPainting: false }))
+              }
+              text={"Realistico"}
+            />
+          </div>
+        </div>
         <button
           disabled={!data.image || !data.prompt}
           className={`${
